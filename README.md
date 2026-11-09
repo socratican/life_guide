@@ -1,6 +1,6 @@
 # 高性价比人生指南 · 34 个主题浏览站
 
-把《高性价比人生指南》完整版（884 页、34 个生活主题、767 条建议）整理成一个可以直接部署到 GitHub Pages 的静态站点。
+《高性价比人生指南》完整版（884 页、34 个生活主题、767 条建议）
 
 **三级浏览结构**
 
@@ -18,7 +18,7 @@
 **其他**
 
 - 纯静态，无构建步骤、无框架、无外部 CDN 依赖
-- 深浅色主题，跟随系统并可手动切换（记忆在 localStorage）
+- 深浅色主题，跟随系统并可手动切换
 - 每条条目都有独立 URL（`#/i/13-07`），可直接分享到某一条
 - 数据按主题拆分懒加载：首屏只拉 20KB 的主题清单 + 320KB 的搜索索引
 
@@ -40,7 +40,6 @@
 
 ## 本地预览
 
-`fetch` 读取 JSON 在 `file://` 下会被浏览器拦截，需要起一个本地服务器：
 
 ```bash
 python -m http.server 8123
@@ -49,32 +48,6 @@ python -m http.server 8123
 
 任何一个静态服务器都可以，例如 `npx serve .`。
 
-## 部署到 GitHub Pages
-
-**方式一：GitHub Actions（推荐，已内置工作流）**
-
-1. 新建仓库，把本目录下所有文件推到 `main` 分支：
-
-   ```bash
-   git init
-   git add .
-   git commit -m "feat: 高性价比人生指南主题浏览站"
-   git branch -M main
-   git remote add origin https://github.com/<你的用户名>/<仓库名>.git
-   git push -u origin main
-   ```
-
-2. 仓库 **Settings → Pages → Build and deployment → Source** 选择 **GitHub Actions**
-3. 推送后 Actions 会自动构建发布，站点地址：`https://<用户名>.github.io/<仓库名>/`
-
-**方式二：直接从一个分支发布（不用 Actions）**
-
-1. 推到 GitHub 后进入 **Settings → Pages**
-2. **Source** 选 **Deploy from a branch**，分支选 `main`，目录选 `/ (root)`
-3. 等一两分钟即可访问
-
-> 仓库名如果就叫 `<用户名>.github.io`，站点会挂在根路径；否则是 `/<仓库名>/` 子路径。
-> 本项目的资源都使用相对路径，两种情况下都能正常工作。
 
 ## 数据来源与许可
 
