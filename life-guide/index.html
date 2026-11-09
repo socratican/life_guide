@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高性价比人生指南 · 34 个主题</title>
+<meta name="description" content="《高性价比人生指南》34 个生活主题、767 条建议的结构化浏览站点：按主题看条目，点条目看完整解释、成本、收益与来源。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%2335594A'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23F6F5F1' font-family='serif'>高</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:title" content="高性价比人生指南 · 34 个主题与 767 条建议">
+<meta property="og:description" content="按 34 个生活主题浏览全部建议：主题 → 条目 → 完整解释（成本、收益、备注、来源）。">
+<meta name="theme-color" content="#33584A">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="bar-inner">
+    <a class="brand" href="#/" aria-label="返回首页">
+      <span class="mark">高</span>
+      <span class="brand-text">
+        <strong>高性价比人生指南</strong>
+        <em>34 个主题 · 767 条建议</em>
+      </span>
+    </a>
+
+    <div class="search-wrap" id="searchWrap">
+      <svg class="ico" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="5.5"/><path d="M12.7 12.7 17 17"/></svg>
+      <input id="q" type="search" autocomplete="off" spellcheck="false"
+             placeholder="搜索主题或条目…" aria-label="搜索主题或条目">
+      <kbd>/</kbd>
+      <button class="clear" id="qClear" aria-label="清空搜索" hidden>&times;</button>
+    </div>
+
+    <button class="icon-btn" id="themeToggle" aria-label="切换深浅色">
+      <svg viewBox="0 0 24 24" class="i-sun" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.6M12 18.9v2.6M2.5 12h2.6M18.9 12h2.6M5.2 5.2l1.8 1.8M17 17l1.8 1.8M18.8 5.2 17 7M7 17l-1.8 1.8"/></svg>
+      <svg viewBox="0 0 24 24" class="i-moon" aria-hidden="true"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="app" class="app" tabindex="-1">
+
+  <!-- ============ 一级：主题 ============ -->
+  <section id="view-home" class="view">
+    <div class="hero">
+      <p class="eyebrow">How to live better · 结构化索引</p>
+      <h1>把生活里的选择，看得更清楚</h1>
+      <p class="lede">
+        全书按 <b>34 个生活主题</b> 组织，共 <b>767 条建议</b>。每个主题下的条目都可以点开，
+        看到结论、成本、收益、备注和来源。也可以直接搜索关键词。
+      </p>
+      <div class="stats" id="stats"></div>
+    </div>
+
+    <div class="filters" id="homeFilters">
+      <div class="filter-group">
+        <span class="flabel">证据等级</span>
+        <div class="chips" data-filter="evidence" role="group" aria-label="证据等级筛选">
+          <button class="chip is-on" data-ev="all">全部</button>
+          <button class="chip" data-ev="A">A · 有具体数字</button>
+          <button class="chip" data-ev="B">B · 有研究支持</button>
+          <button class="chip" data-ev="C">C · 经验做法</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2 id="homeTitle">全部主题</h2>
+      <span class="hint" id="homeHint"></span>
+    </div>
+
+    <div class="grid" id="themeGrid"></div>
+
+    <div class="results" id="searchResults" hidden></div>
+  </section>
+
+  <!-- ============ 二级：条目 ============ -->
+  <section id="view-theme" class="view" hidden>
+    <nav class="crumbs" id="themeCrumbs"></nav>
+    <header class="theme-head">
+      <span class="tno" id="themeNo"></span>
+      <div>
+        <h1 id="themeName"></h1>
+        <p class="theme-intro" id="themeIntro"></p>
+      </div>
+    </header>
+
+    <div class="filters">
+      <div class="filter-group grow">
+        <input id="localQ" type="search" class="local-search" placeholder="在本主题内过滤条目…" aria-label="在本主题内过滤条目">
+      </div>
+      <div class="filter-group">
+        <div class="chips" data-filter="evidence" role="group" aria-label="证据等级筛选">
+          <button class="chip is-on" data-ev="all">全部</button>
+          <button class="chip" data-ev="A">A</button>
+          <button class="chip" data-ev="B">B</button>
+          <button class="chip" data-ev="C">C</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>条目</h2>
+      <span class="hint" id="itemHint"></span>
+    </div>
+    <div class="rows" id="itemList"></div>
+  </section>
+
+  <!-- ============ 三级：解释 ============ -->
+  <section id="view-item" class="view" hidden>
+    <nav class="crumbs" id="itemCrumbs"></nav>
+    <article class="detail" id="detail"></article>
+    <nav class="pager" id="pager"></nav>
+  </section>
+
+  <div class="empty" id="empty" hidden></div>
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <p>
+      <b>证据等级</b>　<span class="badge A">A</span> 有具体数字可查　
+      <span class="badge B">B</span> 有研究支持　
+      <span class="badge C">C</span> 经验与通行做法
+    </p>
+    <p class="muted">
+      内容整理自 eternity4719《高性价比人生指南》（howtolivebetter.net，CC BY 4.0）。
+      涉及医疗、法律与政策的内容，请核对原始来源与当地现行规定。
+    </p>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
